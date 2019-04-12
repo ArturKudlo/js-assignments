@@ -56,8 +56,9 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-    throw new Error('Not implemented');
-}
+    var a = 'Hello, ' + firstName + ' ' + lastName + '!';
+      return a;
+  }
 
 /**
  * Extracts a name from template string 'Hello, First_Name Last_Name!'.
@@ -70,8 +71,10 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-    throw new Error('Not implemented');
-}
+   value = value.substring(7);
+   let b = value.substring(0, value.length - 1);
+    return b;
+  }
 
 
 /**
@@ -85,8 +88,8 @@ function extractNameFromTemplate(value) {
  *   'cat'       => 'c'
  */
 function getFirstChar(value) {
-    throw new Error('Not implemented');
-}
+    return value.charAt(0);
+ }
 
 /**
  * Removes a leading and trailing whitespace characters from string.
