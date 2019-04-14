@@ -33,7 +33,22 @@
  *
  */
 function* get99BottlesOfBeer() {
-    throw new Error('Not implemented');
+    let index = 99,
+    line = true;
+    while (index > 0) {
+        if (line)
+            yield `${index} bottle${index > 1 ? 's' : ''} of beer on the wall, ${index} bottle${index > 1 ? 's' : ''} of beer.`;
+        else {
+            --index;
+            if (index)
+                yield `Take one down and pass it around, ${index} bottle${index > 1 ? 's' : ''} of beer on the wall.`;
+            else
+                yield 'Take one down and pass it around, no more bottles of beer on the wall.';
+        }
+        line = !line;
+    }
+    yield 'No more bottles of beer on the wall, no more bottles of beer.';
+    yield 'Go to the store and buy some more, 99 bottles of beer on the wall.';
 }
 
 
@@ -47,7 +62,14 @@ function* get99BottlesOfBeer() {
  *
  */
 function* getFibonacciSequence() {
-    throw new Error('Not implemented');
+    let x1 = 0;
+    let x2 = 1; 
+    while (true) {
+        let x = x1;
+        x1 = x2;
+        x2 = x1 + x;
+        yield x;
+}
 }
 
 
@@ -82,8 +104,16 @@ function* getFibonacciSequence() {
  *
  */
 function* depthTraversalTree(root) {
-    throw new Error('Not implemented');
+    const stack = [root];
+    while (stack.length > 0) {
+        root = stack.pop();
+        yield root;
+        if (typeof root.children !== 'undefined')
+            for (let value of root.children.reverse())
+                stack.push(value);
+    }
 }
+
 
 
 /**
@@ -126,7 +156,19 @@ function* breadthTraversalTree(root) {
  *   [ 1, 3, 5, ... ], [ -1 ] => [ -1, 1, 3, 5, ...]
  */
 function* mergeSortedSequences(source1, source2) {
-    throw new Error('Not implemented');
+    var a1 = source1(),
+        a2 = source2(),
+        b1 = a1.next().value,
+        b2 = a2.next().value;
+    while (true)
+        if ((b1 < b2 || b2 === undefined) && b1 !== undefined) {
+            yield b1;
+            b1 = a1.next().value;
+        } else if (b2 !== undefined) {
+            yield b2;
+            b2 = a2.next().value;
+        } else
+            break;
 }
 
 
